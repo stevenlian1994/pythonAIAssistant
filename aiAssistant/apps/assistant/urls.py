@@ -7,6 +7,7 @@ urlpatterns = [
       url(r'^create$', views.create),
       url(r'^(?P<my_val>\d+)$', views.show),
       url(r'^(?P<my_val>\d+)/edit$', views.edit),
+      url(r'^makeQuery$', views.makeQuery),
 
 
 

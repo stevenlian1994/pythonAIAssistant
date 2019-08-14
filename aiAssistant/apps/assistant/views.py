@@ -1,11 +1,30 @@
 from django.shortcuts import render, HttpResponse, redirect
+import wolframalpha
+app_id = "49WUTK-JY3L772QUL"
+client = wolframalpha.Client(app_id)
+
+
 def index(request):
+  # my_input = "What is the weather today?"
+  # res = client.query(my_input)
+  # answer = next(res.results).text 
+  # print(answer)
   context = {
     "name": "Noelle",
     "favorite_color": "turquoise",
     "pets": ["Bruce", "Fitz", "Georgie"]
   }
   return render(request, "assistant/index.html", context)
+
+def makeQuery(request):
+    userQuery = request.POST['query']
+    res = client.query(userQuery)
+    answer = next(res.results).text 
+    print(answer)
+    context = {"answer": answer}
+    return render(request, "assistant/index.html", context)
+
+
 def new(request):
     return HttpResponse("placeholder to display a new form to create a new blog")
 def create(request):
